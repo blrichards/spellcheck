@@ -8,11 +8,11 @@ void doubleSize(String *s) {
     s->cap *= 2;
 }
 
-void concat(String *s, String *o) {
+void concat(String *s, const String *o) {
     while (s->cap < s->len + o->len)
         doubleSize(s);
     for (int i = 0; i < o->len; i++)
-        s->data[i + o->len] = o->data[i];
+        s->data[i + s->len] = o->data[i];
     s->len += o->len;
     s->data[s->len] = '\0';
 }
@@ -25,9 +25,9 @@ void addChar(String *s, const char c) {
 }
 
 String *toLower(String *s) {
-    String* newStr = (String*)new(STRING, 1, s->data);
+    String* newStr = new(STRING, 1, s->data);
     for (int i = 0; i < newStr->len; i++)
-        if (newStr->data[i] < 'Z' && newStr->data[i] > 'A')
+        if (newStr->data[i] <= 'Z' && newStr->data[i] >= 'A')
             newStr->data[i] += 0x20;
     return newStr;
 }
@@ -38,5 +38,10 @@ bool equals(String* s, String* o) {
         if (s->data[i] != o->data[i])
             return false;
     return true;
+}
+
+void capitalize(String *word) {
+    if (word->data[0] >= 'a' && word->data[0] <= 'z')
+        word->data[0] -= 0x20;
 }
 

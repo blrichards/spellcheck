@@ -1,1 +1,1 @@
-hello my name is Ben Richards asdf
+This is a tst. Misspelled words should be bolded in the console output asdf.

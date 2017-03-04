@@ -3,7 +3,6 @@
 //
 #include <stdlib.h>
 #include <stdarg.h>
-//#include <stdbool.h>
 #include <assert.h>
 #include <string.h>
 
@@ -40,7 +39,7 @@ void *new(TYPE t, int num, ...) {
             entry *newEntry = (entry*)new_t;
 
             String *key = va_arg(args, String*);
-            newEntry->key = (String*)new(STRING, 1, key->data);
+            newEntry->key = new(STRING, 1, key->data);
             newEntry->value = va_arg(args, int);
             newEntry->next = NULL;
             break;

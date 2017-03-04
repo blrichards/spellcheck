@@ -17,8 +17,8 @@ typedef enum {
 
 typedef struct {
     char *data;
-    int   len;
-    int   cap;
+    int len;
+    int cap;
 } String;
 
 /* @struct: entry
@@ -41,18 +41,31 @@ typedef struct {
 } HashMap;
 
 void *new(TYPE, int, ...);
-void  delete(TYPE, void*);
 
-/** String functions **/
-void concat(String*, String*);
-void addChar(String*, const char);
-String *toLower(String*);
-bool    equals(String*,String*);
+void delete(TYPE, void *);
 
-/** HashMap functions **/
+/**
+ * String functions
+ */
+void concat(String *, const String *);
+
+void addChar(String *, const char);
+
+String *toLower(String *);
+
+bool equals(String *, String *);
+
+void capitalize(String *);
+
+/**
+ * HashMap functions
+ */
 void put(HashMap *map, String *key, bool value);
+
 bool contains(HashMap *dict, String *key);
+
 bool at(HashMap *dict, String *key);
+
 void clear(HashMap *dict);
 
 #endif //SPELLCHECK_STRING_H
