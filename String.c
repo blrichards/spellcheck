@@ -24,12 +24,16 @@ void addChar(String *s, const char c) {
     s->data[s->len] = '\0';
 }
 
-String *toLower(String *s) {
-    String* newStr = new(STRING, 1, s->data);
-    for (int i = 0; i < newStr->len; i++)
-        if (newStr->data[i] <= 'Z' && newStr->data[i] >= 'A')
-            newStr->data[i] += 0x20;
-    return newStr;
+void toLower(String *s) {
+    for (int i = 0; i < s->len; i++)
+        if (s->data[i] <= 'Z' && s->data[i] >= 'A')
+            s->data[i] += 0x20;
+}
+
+void toUpper(String *s) {
+    for (int i = 0; i < s->len; i++)
+        if (s->data[i] <= 'z' && s->data[i] >= 'a')
+            s->data[i] -= 0x20;
 }
 
 bool equals(String* s, String* o) {

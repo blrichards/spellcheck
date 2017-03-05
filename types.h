@@ -51,7 +51,9 @@ void concat(String *, const String *);
 
 void addChar(String *, const char);
 
-String *toLower(String *);
+void toLower(String *);
+
+void toUpper(String*);
 
 bool equals(String *, String *);
 

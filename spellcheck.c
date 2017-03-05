@@ -51,7 +51,7 @@ void spellCheck(FILE *article, FILE *dictionary) {
         String *word = new(STRING, 1, "");
 
         while (c != ' ' && c != '\n' && c != EOF) {
-            if (c == '.') {
+            if (c == '.' || c == '?' || c == '!') {
                 nextCapital = true;
                 break;
             } else if (nextCapital && (c < 'Z' && c > 'A')) {
@@ -73,13 +73,12 @@ void spellCheck(FILE *article, FILE *dictionary) {
 
         // print the word in bold if it's misspelled
         if (correct)
-            printf(word->data);
+            printf("%s", word->data);
         else {
-            String *bold = new(STRING, 1, "\033[1m");
-            concat(bold, word);
-            printf("%s", bold->data);
-            delete(STRING, bold);
+            toUpper(word);
+            printf("%s", word->data);
         }
+
 
 
         putchar(c);
